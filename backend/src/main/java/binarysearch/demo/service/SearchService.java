@@ -2,7 +2,6 @@ package binarysearch.demo.service;
 
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class SearchService {
     public static Node binarySearch(Node root, int target) {
