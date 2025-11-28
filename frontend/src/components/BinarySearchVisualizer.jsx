@@ -14,6 +14,7 @@ export default function BinarySearchVisualizer(){
     return (
         <div>
             <h1>Binary Search</h1>
+            
             <input
                 type = "number"
                 value = {input}
@@ -23,6 +24,7 @@ export default function BinarySearchVisualizer(){
             <button onClick = {handleSearch}> Search </button>
             {result !== null && <p>Result: {result}</p>}
         </div>
+        
     );
 }
 
