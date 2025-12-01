@@ -2,8 +2,8 @@ import { use, useState } from "react";
 import { submitTree, search } from "../api/apiClient";
 
 
-function createNode(value = ""){
-    return {value, left: null, righ: null};
+function createNode(num = 0){
+    return {num, left: null, right: null};
 }
 export default function TreeBuilder(){
     const [root, setRoot] = useState(createNode());
@@ -15,7 +15,7 @@ export default function TreeBuilder(){
     const forceRender = () => setTick(tick => tick + 1);
     
     const handleValueChange = (node, newValue) => {
-        node.value = newValue;
+        node.num = Number(newValue);
         forceRender();
     }
 
@@ -30,7 +30,7 @@ export default function TreeBuilder(){
             <div style = {{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem"}}>
                 <input 
                     type = "number"
-                    value = {node.value}
+                    value = {node.num}
                     onChange = {(e) => handleValueChange(node, e.target.value)}
                     placeholder="value"
                 />
@@ -46,15 +46,29 @@ export default function TreeBuilder(){
     };
 
     const handleSubmit = async () => {
-        await submitTree(root);
-        alert("Tree submitted");
+        try {
+            await submitTree(root);
+            alert("Tree submitted successfully!");
+        } catch (err) {
+            console.error("Error submitting tree:", err);
+            alert("Failed to submit tree.");
+        }
     };
 
+
     const handleSearch = async () => {
-        if(searchValue === "") return null;
-        const result = await search(Number(searchValue));
-        setSearchResult(result.found ? `Found: ${result.value}` : "Value not found");
-    }
+        if (searchValue === "") return null;
+        try {
+            const response = await fetch(`http://localhost:8080/api/search?num=${searchValue}`);
+            if (!response.ok) throw new Error("Search failed");
+            const text = await response.text(); 
+            setSearchResult(text);
+        } catch (err) {
+            console.error(err);
+            setSearchResult("Search failed");
+        }
+    };
+    
 
     return (
         <div style = {{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1rem"}}>
@@ -69,7 +83,7 @@ export default function TreeBuilder(){
                 type="number"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Value to search"
+                placeholder="target value"
             />
             <button onClick={handleSearch}>Search</button>
             {searchResult && <p>{searchResult}</p>}

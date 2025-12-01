@@ -1,13 +1,12 @@
 import logo from './logo.svg';
 import './styles/App.css';
-import BinarySearchVisualizer from './components/BinarySearchVisualizer';
 import TreeBuilder from './components/TreeBuilder';
+
 function App() {
   return (
     <div className="app-container">
 
       <TreeBuilder/>
-      <BinarySearchVisualizer/>
 
      {/*<header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />

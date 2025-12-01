@@ -28,6 +28,7 @@ public class TreeBuilderController {
         return "tree saved";
     }
 
+    
     @GetMapping
     public binarysearch.demo.service.Node getTree(){
         return treeService.getTree();

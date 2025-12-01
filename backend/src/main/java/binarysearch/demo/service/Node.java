@@ -1,7 +1,7 @@
 package binarysearch.demo.service;
 
 public class Node {
-    int num;
+    Integer num;
     Node left, right;
 
     public Node() {}

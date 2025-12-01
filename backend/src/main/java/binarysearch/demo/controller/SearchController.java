@@ -1,5 +1,8 @@
 package binarysearch.demo.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,16 +23,18 @@ public class SearchController {
     }
 
     @GetMapping
-    public String search(@RequestParam int num){
-        Node result = (Node) treeService.serachFromRoot(num);
+    public Map<String, Object> search(@RequestParam int num){
+        Node result = treeService.searchFromRoot(num);
+        Map<String, Object> map = new HashMap<>();
         if(result != null){
-            return "Value Found: " + result.getNum();
+            map.put("found", true);
+            map.put("value", result.getNum());
+        } else {
+            map.put("found", false);
         }
-        else {
-            return "Value was not found :(";
-        }
-        
+        return map;
     }
+
 
     @GetMapping("/test")
     public String test() {

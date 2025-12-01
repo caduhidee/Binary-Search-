@@ -15,6 +15,9 @@ public class TreeService {
     }
 
     public Node search(Node root, int target) {
+
+        System.out.println("Root node num: " + root.getNum());
+        System.out.println("Searching for: " + num);
         if (root == null) {
             return null;
         }
@@ -30,7 +33,7 @@ public class TreeService {
         }
     }
 
-    public Node serachFromRoot(int value) {
+    public Node searchFromRoot(int value) {
         return search(root, value);
     }
 }
