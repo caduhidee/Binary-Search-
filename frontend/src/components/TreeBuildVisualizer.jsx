@@ -1,3 +1,5 @@
+//deprecated
+
 import {useState} from "react";
 import {search} from "../api/apiClient";
    
