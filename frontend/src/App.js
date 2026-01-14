@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import john from './images.jpeg';
 import derrick from './images (1).jpeg';
+import conway from './Berners-Lee_Tim.jpg';
 
 import './styles/App.css';
 import TreeBuilder from './components/TreeBuilder';
@@ -16,10 +17,9 @@ function App() {
           <h3>John Mauchly (1946)</h3>
         </div>
         <div className= "vstack">
-          <img src ={derrick}/>
-          <h3>Derrick Henry Lehmer (1960)</h3>
+          <img src ={conway}/>
+          <h3>Conway Berners-Lee (1960)</h3>
         </div>
-
       </div>
 
      {/*<header className="App-header">
